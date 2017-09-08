@@ -1,0 +1,1 @@
+POST        /graphql        controllers.HomeController.graphql

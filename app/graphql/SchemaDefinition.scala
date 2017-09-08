@@ -1,9 +1,11 @@
-import sangria.schema._
+package graphql
+
 import sangria.macros.derive._
+import sangria.schema._
 
 object SchemaDefinition {
 
-  val Team = deriveObjectType[Unit, Team](
+  val Team: ObjectType[Unit, Team] = deriveObjectType[Unit, Team](
     ObjectTypeDescription("A team"),
     DocumentField("name", "The name of the team"))
 

@@ -1,10 +1,12 @@
+package graphql
+
 import io.circe.Json
-import org.scalatest.{Matchers, MustMatchers, WordSpec}
-import sangria.macros._
-import sangria.execution._
-import sangria.marshalling.circe._
-import org.scalatest.concurrent.ScalaFutures
 import io.circe.parser._
+import org.scalatest.concurrent.ScalaFutures
+import org.scalatest.{MustMatchers, WordSpec}
+import sangria.execution._
+import sangria.macros._
+import sangria.marshalling.circe._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

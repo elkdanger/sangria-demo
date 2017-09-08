@@ -1,3 +1,5 @@
+package graphql
+
 class TeamRepo {
 
   private val teams = Map(
