@@ -14,8 +14,14 @@ import sangria.parser.{QueryParser, SyntaxError}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
+import views.html._
 
 class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+
+  def graphql_sandbox = Action.async {
+    implicit request =>
+      Future.successful(Ok(views.html.graphqli()))
+  }
 
   def graphql = Action.async(parse.json) {
     implicit request =>

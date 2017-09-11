@@ -1,1 +1,4 @@
+GET         /graphql        controllers.HomeController.graphql_sandbox
+
++ nocsrf
 POST        /graphql        controllers.HomeController.graphql
