@@ -14,6 +14,8 @@ class DataRepository {
     9 -> Team(9, "Renault", "Renault", privateer = false)
   )
 
+  def getTeams = teams.values.toSeq
+
   def getTeam(id: Int) = if(teams.contains(id)) Some(teams(id)) else None
 
 }

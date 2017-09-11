@@ -5,7 +5,7 @@ import sangria.schema._
 
 object SchemaDefinition {
 
-  val Team: ObjectType[Unit, Team] = deriveObjectType[Unit, Team](
+  val TeamType: ObjectType[Unit, Team] = deriveObjectType[Unit, Team](
     ObjectTypeDescription("A team"),
     DocumentField("name", "The name of the team"))
 
@@ -13,9 +13,13 @@ object SchemaDefinition {
 
   val Query = ObjectType(
     "Query", fields[DataRepository, Unit](
-      Field("team", OptionType(Team),
+      Field("team", OptionType(TeamType),
         arguments = ID :: Nil,
         resolve = ctx => ctx.ctx.getTeam(ctx arg ID)
+      ),
+      Field("teams", ListType(TeamType),
+        description = Some("Returns the list of teams"),
+        resolve = _.ctx.getTeams
       )
     )
   )
