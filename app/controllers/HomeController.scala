@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
-import graphql.{SchemaDefinition, TeamRepo}
+import graphql.{DataRepository, SchemaDefinition}
 import models.graphql.Query
 import play.api.libs.json.{JsObject, Json}
 import play.api.mvc.{AbstractController, ControllerComponents}
@@ -14,7 +14,6 @@ import sangria.parser.{QueryParser, SyntaxError}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
-import views.html._
 
 class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
@@ -38,7 +37,7 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   }
 
   private def executeGraphQLQuery(query: Document, operation: Option[String], vars: JsObject) =
-    Executor.execute(SchemaDefinition.TeamSchema, query, new TeamRepo, operationName = operation, variables = vars)
+    Executor.execute(SchemaDefinition.TeamSchema, query, new DataRepository, operationName = operation, variables = vars)
       .map(Ok(_))
       .recover {
         case error: QueryAnalysisError => BadRequest(error.resolveError)

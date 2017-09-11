@@ -12,7 +12,7 @@ object SchemaDefinition {
   val ID = Argument("id", IntType, description = "The id of an entity")
 
   val Query = ObjectType(
-    "Query", fields[TeamRepo, Unit](
+    "Query", fields[DataRepository, Unit](
       Field("team", OptionType(Team),
         arguments = ID :: Nil,
         resolve = ctx => ctx.ctx.getTeam(ctx arg ID)

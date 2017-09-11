@@ -29,7 +29,7 @@ class SchemaSpec extends WordSpec with MustMatchers with ScalaFutures {
           """
 
       val result: Future[Json] =
-        Executor.execute(SchemaDefinition.TeamSchema, query, new TeamRepo)
+        Executor.execute(SchemaDefinition.TeamSchema, query, new DataRepository)
 
       val expectedJson =
         """
