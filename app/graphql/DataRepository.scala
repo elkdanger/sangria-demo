@@ -2,18 +2,6 @@ package graphql
 
 class DataRepository {
 
-  private val teams = Map(
-    1 -> Team(1, "Mercedes", "Mercedes", privateer = false),
-    2 -> Team(2, "Ferrari", "Ferrari", privateer = false),
-    3 -> Team(3, "Red Bull", "Renault", privateer = true),
-    4 -> Team(4, "McLaren", "Honda", privateer = false),
-    5 -> Team(5, "Williams", "Mercedes", privateer = true),
-    6 -> Team(6, "Force India", "Mercedes", privateer = true),
-    7 -> Team(7, "Sauber", "Ferrari", privateer = true),
-    8 -> Team(8, "Haas", "Ferrari", privateer = true),
-    9 -> Team(9, "Renault", "Renault", privateer = false)
-  )
-
   private val drivers = Map(
     1 -> Driver(1, "Lewis Hamilton", "British"),
     2 -> Driver(2, "Valtteri Bottas", "Finnish"),
@@ -34,6 +22,19 @@ class DataRepository {
     17 -> Driver(17, "Jolyon Palmer", "British"),
     18 -> Driver(18, "Nico Hülkenburg", "German")
   )
+
+  private val teams = Map(
+  1 -> Team(1, "Mercedes", "Mercedes", privateer = false, Seq(drivers(1), drivers(2))),
+  2 -> Team(2, "Ferrari", "Ferrari", privateer = false, Seq(drivers(3), drivers(4))),
+  3 -> Team(3, "Red Bull", "Renault", privateer = true, Seq(drivers(5), drivers(6))),
+  4 -> Team(4, "McLaren", "Honda", privateer = false, Seq(drivers(7), drivers(8))),
+  5 -> Team(5, "Williams", "Mercedes", privateer = true, Seq(drivers(9), drivers(10))),
+  6 -> Team(6, "Force India", "Mercedes", privateer = true, Seq(drivers(11), drivers(12))),
+  7 -> Team(7, "Sauber", "Ferrari", privateer = true, Seq(drivers(13), drivers(14))),
+  8 -> Team(8, "Haas", "Ferrari", privateer = true, Seq(drivers(15), drivers(16))),
+  9 -> Team(9, "Renault", "Renault", privateer = false, Seq(drivers(17), drivers(18)))
+  )
+
 
   def getTeams = teams.values.toSeq
 

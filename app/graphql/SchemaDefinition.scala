@@ -5,13 +5,13 @@ import sangria.schema._
 
 object SchemaDefinition {
 
+  implicit val DriverType: ObjectType[Unit, Driver] = deriveObjectType[Unit, Driver](
+    ObjectTypeDescription("A driver"),
+    DocumentField("name", "The name of the driver"))
+
   val TeamType: ObjectType[Unit, Team] = deriveObjectType[Unit, Team](
     ObjectTypeDescription("A team"),
     DocumentField("name", "The name of the team"))
-
-  val DriverType: ObjectType[Unit, Driver] = deriveObjectType[Unit, Driver](
-    ObjectTypeDescription("A driver"),
-    DocumentField("name", "The name of the driver"))
 
   val ID = Argument("id", IntType, description = "The id of an entity")
 
