@@ -9,6 +9,10 @@ object SchemaDefinition {
     ObjectTypeDescription("A team"),
     DocumentField("name", "The name of the team"))
 
+  val DriverType: ObjectType[Unit, Driver] = deriveObjectType[Unit, Driver](
+    ObjectTypeDescription("A driver"),
+    DocumentField("name", "The name of the driver"))
+
   val ID = Argument("id", IntType, description = "The id of an entity")
 
   val Query = ObjectType(
@@ -20,6 +24,14 @@ object SchemaDefinition {
       Field("teams", ListType(TeamType),
         description = Some("Returns the list of teams"),
         resolve = _.ctx.getTeams
+      ),
+      Field("driver", OptionType(DriverType),
+        arguments = ID :: Nil,
+        resolve = ctx => ctx.ctx.getDriver(ctx arg ID)
+      ),
+      Field("drivers", ListType(DriverType),
+        description = Some("Returns a list of drivers"),
+        resolve = _.ctx.getDrivers
       )
     )
   )
